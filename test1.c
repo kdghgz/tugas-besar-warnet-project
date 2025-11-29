@@ -9,6 +9,8 @@ int main () {
 
 
 
+
+
 printf ("hello world");
 
     printf ("hello world");
@@ -17,7 +19,12 @@ printf ("hello world");
         printf("%d", i);
     }
     
+    printf ("malas alpro");
 }
+
+
+
+
 
 
 
