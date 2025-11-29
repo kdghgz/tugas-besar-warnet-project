@@ -7,11 +7,14 @@ int main () {
     printf ("MASUKAN NAMA");
     scanf ("%s" ,nama);
 
-
-
+    
+        
 
 
 printf ("hello world");
+
+    printf ("hello world");
+
 
     printf ("hello world");
     printf ("test");
@@ -19,7 +22,15 @@ printf ("hello world");
         printf("%d", i);
     }
     
-    printf ("malas alpro");
+
+    printf ("malas alpro hem dhgd");
+
+    
+
+    printf("hairynigga635");
+
+    printf ("test");
+
 }
 
 
