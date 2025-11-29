@@ -19,7 +19,7 @@ int main () {
     }
 
     printf("hairynigga635");
-    printf("tes");
+    printf("tes pull");
 }
 
 
