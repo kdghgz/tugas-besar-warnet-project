@@ -130,6 +130,7 @@ void Signin() {
 
 void list(int menu) {
     int jam;
+    int harga = 5000;
     
     switch (menu) {
         case 1: {
@@ -160,6 +161,7 @@ void list(int menu) {
                         if (lanjut == 'Y' || lanjut == 'y') {
                             printf("Masukkan jumlah jam: ");
                             scanf("%d", &jam);
+                            printf ("harga: %d" , harga*jam);
                             printf("====================\n");
                             printf("Booking berhasil! PC A disewa %d jam.\n", jam);
                             printf("====================\n");
