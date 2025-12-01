@@ -2,9 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-//tes perubahan lagi lagiii
-// tes perubahan 
-
+//uu 
 
 //IDENTITAS USER
 struct User {
