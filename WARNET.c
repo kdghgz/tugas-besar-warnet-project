@@ -132,6 +132,7 @@ void list(int menu) {
     int jam;
     int harga = 5000;
     
+    //tes
     switch (menu) {
         case 1: {
             int pc;
@@ -177,6 +178,7 @@ void list(int menu) {
                         }
                         break;
                         
+                        //jenis rental pc B
                     case 2:
                         printf("==== Jenis PC B ====\n");
                         printf("CPU: Intel Core i5-11400F \nGPU: GTX 1660\nRAM: 16 GB DDR4\nStorage: SSD 512 GB\nMonitor: 24 inch\n");
