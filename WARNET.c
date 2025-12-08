@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-//uu 
+
 
 //IDENTITAS USER
 struct User {
@@ -132,7 +132,7 @@ void list(int menu) {
     int jam;
     int harga = 5000;
     
-    //tes
+
     switch (menu) {
         case 1: {
             int pc;
@@ -167,8 +167,8 @@ void list(int menu) {
                             printf("Booking berhasil! PC A disewa %d jam.\n", jam);
                             printf("====================\n");
                             
-                            // Simpan riwayat
-                            if (jumlahlogin != -1) {
+                            // Simpan riwayat 
+                            if (jumlahlogin != -1)  {
                                 sprintf(pengguna[jumlahlogin].riwayat[pengguna[jumlahlogin].riwayatdalambermain], 
                                         "PC A - %d jam", jam);
                                 pengguna[jumlahlogin].riwayatdalambermain++;
@@ -178,7 +178,7 @@ void list(int menu) {
                         }
                         break;
                         
-                        //jenis rental pc B
+                        //JENIS RENTAL PC B 
                     case 2:
                         printf("==== Jenis PC B ====\n");
                         printf("CPU: Intel Core i5-11400F \nGPU: GTX 1660\nRAM: 16 GB DDR4\nStorage: SSD 512 GB\nMonitor: 24 inch\n");
@@ -186,6 +186,8 @@ void list(int menu) {
                         printf("Lanjut rental dengan PC B ? (Y/T): ");
                         scanf(" %c", &lanjut);
                         printf("====================\n");
+
+                        //JIKA USER MENGETIKAN LANJUT Y ATAU y MAKA SELANJUTNYA 
                         
                         if (lanjut == 'Y' || lanjut == 'y') {
                             printf("Masukkan jumlah jam: ");
