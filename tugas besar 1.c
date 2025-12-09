@@ -100,7 +100,6 @@ void exitProgram(); // EXIT PROGRAM
 void list(int menu); //LIST RENTAL (MENU 1)
 void tambahJamMain(); // TAMBAH JAM MAIN (MENU 2) TUBES-TAMBAH !
 void cariDevice(); // CEK DEVICE KOSONG SEARCHING (MENU 3) TUBES - SEARCHING !
-void tampilkanRiwayat(); // RIWAYAT PENGGUNA NGAPAIN AJA (MENU 4)
 void editUser(); // EDIT USER (MENU 5) TUBES-EDIT !
 void hapusAkun(); // HAPUS AKUN (MENU 6) TUBES - DELETE !
 void topUpSaldo(); // TOP UP SALDO (MENU 7)
@@ -153,12 +152,11 @@ void Warnetmenu() {
     printf(" 1. Rental Device (PC/PS/NINTENDO)\n");
     printf(" 2. Tambah jam main\n");
     printf(" 3. Cek device kosong\n");
-    printf(" 4. Riwayat pemakaian\n");
-    printf(" 5. Edit profil\n");
-    printf(" 6. Hapus akun\n");
-    printf(" 7. Top up saldo\n");
-    printf(" 8. Sorting daftar user\n");
-    printf(" 9. Log out\n");
+    printf(" 4. Edit profil\n");
+    printf(" 5. Hapus akun\n");
+    printf(" 6. Top up saldo\n");
+    printf(" 7. Sorting daftar user\n");
+    printf(" 8. Log out\n");
     printf("========================================\n");
     printf("Pilihan Anda: ");
 }
@@ -176,9 +174,9 @@ void Signup() {
     scanf("%s", passwordbaru);
     
     for (int i = 0; i < jumlahuser; i++) {
-        if (strcmp(pengguna[i].username, usernameuserbaru) == 0) {
+        if (strcmp(pengguna[i].username, usernameuserbaru) == 0) { //
             printf("Username sudah digunakan! Pilih username lain\n");
-            pauseProgram();
+            pauseProgram(); 
             return;
         }
     }
@@ -646,7 +644,7 @@ void list(int menu) {
             }
         } break;
         
-        case 3: { // Nintendo Switch
+        case 3: { 
             int nintendo;
             int hargaNintendo = 6000;
             
@@ -755,31 +753,7 @@ void list(int menu) {
     }
 }
 
-// FUNGSI RIWAYAT PENGGUNA (SIMPLE - hanya nama user dan lama waktu main)
-void tampilkanRiwayat() {
-    if (jumlahlogin == -1) {
-        printf("Anda belum login!\n");
-        pauseProgram();
-        return;
-    }
-    
-    printf("\n=== RIWAYAT PENGGUNAAN ===\n");
-    printf("Username: %s\n", pengguna[jumlahlogin].username);
-    printf("Total waktu main: ");
-    bilangWaktu(pengguna[jumlahlogin].totalmenitbermain);
-    printf("\n");
-    
-    if (pengguna[jumlahlogin].riwayatdalambermain == 0) {
-        printf("Belum ada riwayat aktivitas\n");
-    } else {
-        printf("Riwayat:\n");
-        for (int i = 0; i < pengguna[jumlahlogin].riwayatdalambermain; i++) {
-            printf("- %s\n", pengguna[jumlahlogin].riwayat[i]);
-        }
-    }
-    printf("========================================\n");
-    pauseProgram();
-}
+
 
 // FUNGSI HAPUS AKUN (MENU 6)
 void hapusAkun() {
@@ -928,7 +902,7 @@ void editUser() {
             tambahRiwayat(aktivitas);
             
             printf("Password berhasil diubah!\n");
-            pauseProgram();
+            pauseProgram(); 
             
         } else if (pilihan == 3) {
             return;
@@ -995,7 +969,22 @@ void sortingLamaBermain() {
 //EXIT PROGRAM USER KELUAR
 void exitProgram() {
     printf("\nTerima kasih telah menggunakan program warnet!\n");
-    pauseProgram();
+    pauseProgram()
+    ;
     exit(0);
+}
+
+int main () {
+    initDevices;
+    int pilihan;
+
+    while (1 ) {
+        if (jumlahlogin == -1) {
+
+
+
+
+        }
+    }
 }
 
