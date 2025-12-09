@@ -1,4 +1,4 @@
-// final amin YANG BERHASIL YANG BERHASIL YANG INI WOK dengan penjelasan
+// final amin YANG BERHASIL YANG BERHASIL YANG INI WOK TINGGAL TAMBAHIN INT MAIN
 
 #include <stdio.h> 
 #include <stdlib.h>
@@ -999,83 +999,3 @@ void exitProgram() {
     exit(0);
 }
 
-int main() {
-    initDevices(); // Inisialisasi device
-    int pilihan;
-    
-    while (1) {
-        if (jumlahlogin == -1) {
-            mainMenu();
-            scanf("%d", &pilihan);
-            
-            switch (pilihan) {
-                case 1:
-                    Signup();
-                    break;
-                case 2:
-                    Signin();
-                    break;
-                case 3:
-                    exitProgram();
-                    break;
-                default:
-                    printf("Pilihan tidak valid!\n");
-                    pauseProgram();
-            }
-        } else {
-            Warnetmenu();
-            scanf("%d", &pilihan);
-            
-            switch (pilihan) {
-                case 1: {
-                    int pilihanDevice;
-                    printf("\n=== RENTAL DEVICE ===\n");
-                    printf("1. PC\n");
-                    printf("2. PlayStation\n");
-                    printf("3. Nintendo Switch\n");
-                    printf("0. Kembali\n"); 
-                    printf("====================\n");
-                    printf("Pilih menu: ");
-                    scanf("%d", &pilihanDevice);
-                    
-                    if (pilihanDevice == 0) {
-                        break;
-                    }
-                    list(pilihanDevice);
-                    break;
-                }
-                case 2:
-                    tambahJamMain();
-                    break;
-                case 3:
-                    cariDevice();
-                    break;
-                case 4:
-                    tampilkanRiwayat();
-                    break;
-                case 5:
-                    editUser();
-                    break;
-                case 6:
-                    hapusAkun();
-                    break;
-                case 7:
-                    topUpSaldo();
-                    break;
-                case 8:
-                    sortingLamaBermain();
-                    break;
-                case 9:
-                    jumlahlogin = -1;
-                    printf("Logout berhasil!\n");
-                    pauseProgram();
-                    break;
-                default:
-                    printf("Pilihan tidak valid!\n");
-                    pauseProgram();
-            }
-        }
-    }
-    
-    return 0;
-}
