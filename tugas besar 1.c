@@ -111,22 +111,6 @@ void sortingLamaBermain(); // URUTKAN (MENU 8) TUBES- SORTING !
 
 // MAIN MENU WARNET USER UNTUK LOGIN DAN REGISTER 
 void mainMenu(){
- printf(" ========================================\n");
-
-    for (int i = 0; i < 5; i++)
-{
-    if(i == 2){  
-        printf("| %29s \n", "SELAMAT DATANG\t\t|");
-        printf("| %23s \n", "DI\t\t\t|");
-        printf("| %25s \n", "WARNET\t\t\t|");
-        printf("| %34s \n", "tongkrongannya para gamers\t|");
-    } else {
-        printf("|\t\t\t\t\t|\n");
-    }
-     printf(" ========================================\n");
-}
-
-
 
 printf("========================================\n");
 printf("| %26s \n", "Pilih Menu\t\t|");
@@ -181,9 +165,10 @@ void Signup() {
         }
     }
     
+    
     strcpy(pengguna[jumlahuser].username, usernameuserbaru);
     strcpy(pengguna[jumlahuser].password, passwordbaru);
-    pengguna[jumlahuser].saldo = 0;
+    pengguna[jumlahuser].saldo = 0; // 
     pengguna[jumlahuser].totalmenitbermain = 0;
     pengguna[jumlahuser].riwayatdalambermain = 0;
     
@@ -256,27 +241,11 @@ void tambahJamMain() {
         int menitTambahan = jam * 60;
         pengguna[jumlahlogin].totalmenitbermain += menitTambahan;
         
-        char aktivitas[100];
-        sprintf(aktivitas, "Tambah jam main - ");
-        bilangWaktu(menitTambahan);
-        strcat(aktivitas, " (Rp ");
-        char hargaStr[20];
-        sprintf(hargaStr, "%d)", totalHarga);
-        strcat(aktivitas, hargaStr);
-        tambahRiwayat(aktivitas);
-        
-        printf("\n Berhasil menambah ");
-        bilangWaktu(menitTambahan);
-        printf("!\n");
-        printf(" Saldo tersisa: Rp %d\n", pengguna[jumlahlogin].saldo);
-        pauseProgram();
-    } else {
-        printf("Batal menambah jam.\n");
-        pauseProgram();
+    
     }
 }
 
-// FUNGSI UNTUK CARI DEVICE KOSONG (MENU 3) - SEQUENTIAL SEARCH SEDERHANA
+// FUNGSI UNTUK CARI DEVICE KOSONG (MENU 3) - SEQUENTIAL SEARCH 
 void cariDevice() {
     printf("\n=== CARI DEVICE ===\n");
     printf("========================================\n");
@@ -292,69 +261,10 @@ void cariDevice() {
     
     printf("\n=== HASIL PENCARIAN ===\n");
     printf("========================================\n");
-    
-    int ditemukan = 0;
-    
-    // Sequential Search sederhana
-    for(int i = 0; i < 13; i++) {
-        int cocok = 0;
-        
-        // Cek kategori umum
-        if (strcmp(kataKunci, "PC") == 0) {
-            if (strstr(devices[i].nama, "PC") != NULL) {
-                cocok = 1;
-            }
-        }
-        else if (strcmp(kataKunci, "PS") == 0) {
-            if (strstr(devices[i].nama, "PS") != NULL) {
-                cocok = 1;
-            }
-        }
-        else if (strcmp(kataKunci, "NINTENDO") == 0) {
-            if (strstr(devices[i].nama, "Nintendo") != NULL) {
-                cocok = 1;
-            }
-        }
-        else {
-            // Cari nama spesifik
-            if (strstr(devices[i].nama, kataKunci) != NULL) {
-                cocok = 1;
-            }
-        }
-        
-        if (cocok) {
-            ditemukan = 1;
-            printf("%-20s: ", devices[i].nama);
-            
-            if(devices[i].tersedia == 1) {
-                printf("Tersedia\n");
-            } else {
-                printf("Terpakai (%s)\n", devices[i].userBooking);
-            }
-        }
-    }
-    
-    if(!ditemukan) {
-        printf("Tidak ditemukan device dengan kata kunci '%s'\n", kataKunci);
-    }
-    
-    printf("========================================\n");
-    
-    // Statistik
-    printf("\n=== STATISTIK ===\n");
-    printf("Total Device: 13\n");
-    
-    int tersedia = 0;
-    for(int i = 0; i < 13; i++) {
-        if(devices[i].tersedia == 1) tersedia++;
-    }
-    
-    printf("Device Tersedia: %d\n", tersedia);
-    printf("Device Terpakai: %d\n", 13 - tersedia);
-    printf("========================================\n");
-    
-    pauseProgram();
+
 }
+    
+    
 
 void list(int menu) {
     int jam;
@@ -528,7 +438,7 @@ void list(int menu) {
             }
         } break;
         
-        case 2: { // PlayStation
+        case 2: { 
             int ps;
             int hargaPS;
             
@@ -853,7 +763,7 @@ void editUser() {
             printf("Masukkan username baru: ");
             scanf("%s", usernameBaru);
             
-            // Cek apakah username sudah digunakan
+       
             int usernameSudahAda = 0;
             for (int i = 0; i < jumlahuser; i++) {
                 if (i != jumlahlogin && strcmp(pengguna[i].username, usernameBaru) == 0) {
@@ -865,7 +775,7 @@ void editUser() {
             if (usernameSudahAda) {
                 printf("Username sudah digunakan! Pilih username lain\n");
             } else {
-                // Update username di semua device yang sedang dipakai
+              
                 for (int i = 0; i < 13; i++) {
                     if (strcmp(devices[i].userBooking, pengguna[jumlahlogin].username) == 0) {
                         strcpy(devices[i].userBooking, usernameBaru);
@@ -921,7 +831,7 @@ void sortingLamaBermain() {
         return;
     }
     
-    struct User temp[100];
+    struct User temp[100]; 
     for (int i = 0; i < jumlahuser; i++) {
         temp[i] = pengguna[i];
     }
@@ -980,6 +890,15 @@ int main () {
 
     while (1 ) {
         if (jumlahlogin == -1) {
+            mainMenu();
+            scanf("%d" , pilihan);
+
+            switch (pilihan) {
+            case 1: 
+
+
+
+
 
 
 
