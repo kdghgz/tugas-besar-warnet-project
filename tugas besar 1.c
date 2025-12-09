@@ -1,9 +1,9 @@
 // final amin YANG BERHASIL YANG BERHASIL YANG INI WOK TINGGAL TAMBAHIN INT MAIN
+// final amin YANG BERHASIL YANG BERHASIL YANG INI WOK TINGGAL TAMBAHIN INT MAIN
 
 #include <stdio.h> 
 #include <stdlib.h>
 #include <string.h>
-
 
 // MENYIMPAN IDENTITAS USER
 struct User {
@@ -29,6 +29,24 @@ struct Device {
 
 struct Device devices[13]; // TOTAL JUMLAH DEVICE TERSEDIA
 
+// DEKLARASI FUNGSI
+void mainMenu(); // menu pertama tersedia 1. sign up 2.log in 3.
+void Warnetmenu(); //WARNET MENU TAMPILAN LIST LAYANAN WARNET YANG TERSEDIA
+void Signup(); // SIGN UP REGISTER DAFTAR AKUN BARU
+void Signin(); // SIGN IN MASUK LOGIN
+void exitProgram(); // EXIT PROGRAM 
+void list(int menu); //LIST RENTAL (MENU 1)
+void tambahJamMain(); // TAMBAH JAM MAIN (MENU 2) TUBES-TAMBAH !
+void cariDevice(); // CEK DEVICE KOSONG SEARCHING (MENU 3) TUBES - SEARCHING !
+void editUser(); // EDIT USER (MENU 5) TUBES-EDIT !
+void hapusAkun(); // HAPUS AKUN (MENU 6) TUBES - DELETE !
+void topUpSaldo(); // TOP UP SALDO (MENU 7)
+void sortingLamaBermain(); // URUTKAN (MENU 8) TUBES- SORTING !
+void pauseProgram(); // FUNGSI UNTUK PAUSE
+void initDevices(); // INISIALISASI DEVICE
+void updateDeviceStatus(const char* deviceName, int status, const char* username); // UPDATE STATUS DEVICE
+void bilangWaktu(int menit); // FUNGSI UNTUK MEMBILANG WAKTU DALAM KATA-KATA
+
 // INISIALISASI DEVICE
 void initDevices() {
     char *namaDevices[] = {
@@ -50,16 +68,6 @@ void pauseProgram() {
     printf("\nTekan Enter untuk melanjutkan...");
     while(getchar() != '\n');
     getchar();
-}
-
-// FUNGSI UNTUK MENAMBAH RIWAYAT
-void tambahRiwayat(const char* aktivitas) {
-    if (jumlahlogin == -1) return;
-    
-    if (pengguna[jumlahlogin].riwayatdalambermain < 50) {
-        strcpy(pengguna[jumlahlogin].riwayat[pengguna[jumlahlogin].riwayatdalambermain], aktivitas);
-        pengguna[jumlahlogin].riwayatdalambermain++;
-    }
 }
 
 // FUNGSI UPDATE STATUS DEVICE
@@ -91,37 +99,21 @@ void bilangWaktu(int menit) {
     }
 }
 
-// DEKLARASI FUNGSI
-void mainMenu(); // menu pertama tersedia 1. sign up 2.log in 3.
-void Warnetmenu(); //WARNET MENU TAMPILAN LIST LAYANAN WARNET YANG TERSEDIA
-void Signup(); // SIGN UP REGISTER DAFTAR AKUN BARU
-void Signin(); // SIGN IN MASUK LOGIN
-void exitProgram(); // EXIT PROGRAM 
-void list(int menu); //LIST RENTAL (MENU 1)
-void tambahJamMain(); // TAMBAH JAM MAIN (MENU 2) TUBES-TAMBAH !
-void cariDevice(); // CEK DEVICE KOSONG SEARCHING (MENU 3) TUBES - SEARCHING !
-void editUser(); // EDIT USER (MENU 5) TUBES-EDIT !
-void hapusAkun(); // HAPUS AKUN (MENU 6) TUBES - DELETE !
-void topUpSaldo(); // TOP UP SALDO (MENU 7)
-void sortingLamaBermain(); // URUTKAN (MENU 8) TUBES- SORTING !
-
-
-
-
-
 // MAIN MENU WARNET USER UNTUK LOGIN DAN REGISTER 
-void mainMenu(){
+void mainMenu() {
+    int pilihan;
+    printf("========================================\n");
+    printf("| %-26s |\n", "Pilih Menu");
+    printf("========================================\n");
+    printf("| 1. Sign Up (buat akun baru)\t|\n");
+    printf("| 2. Sign In (login)\t\t|\n");
+    printf("| 3. Exit\t\t\t|\n");
+    printf("========================================\n");
+    printf("\nPilih menu: ");
+    scanf ("%d" , &pilihan);
 
-printf("========================================\n");
-printf("| %26s \n", "Pilih Menu\t\t|");
-printf("========================================\n");
 
-printf("| 1. Sign Up (buat akun baru)\t\t|\n");
-printf("| 2. Sign In (login)\t\t\t|\n");
-printf("| 3. Exit\t\t\t\t|\n");
-
-printf("========================================\n");
-printf("\nPilih menu: ");
+    // tambah switch
 }
 
 // WARNET MENU DIMANA USER DIHADAPKAN OLEH BEBERAPA PILIHAN YANG TERSEDIA DI WARNET
@@ -158,17 +150,16 @@ void Signup() {
     scanf("%s", passwordbaru);
     
     for (int i = 0; i < jumlahuser; i++) {
-        if (strcmp(pengguna[i].username, usernameuserbaru) == 0) { //
+        if (strcmp(pengguna[i].username, usernameuserbaru) == 0) {
             printf("Username sudah digunakan! Pilih username lain\n");
             pauseProgram(); 
             return;
         }
     }
     
-    
     strcpy(pengguna[jumlahuser].username, usernameuserbaru);
     strcpy(pengguna[jumlahuser].password, passwordbaru);
-    pengguna[jumlahuser].saldo = 0; // 
+    pengguna[jumlahuser].saldo = 0;
     pengguna[jumlahuser].totalmenitbermain = 0;
     pengguna[jumlahuser].riwayatdalambermain = 0;
     
@@ -178,6 +169,7 @@ void Signup() {
     pauseProgram();
 }
 
+// SIGN IN UNTUK LOGIN
 void Signin() {
     char username[50];
     char password[50];
@@ -241,8 +233,13 @@ void tambahJamMain() {
         int menitTambahan = jam * 60;
         pengguna[jumlahlogin].totalmenitbermain += menitTambahan;
         
-    
+        printf("\nPenambahan jam berhasil!\n");
+        printf("Saldo tersisa: Rp %d\n", pengguna[jumlahlogin].saldo);
+    } else {
+        printf("Penambahan jam dibatalkan.\n");
     }
+    
+    pauseProgram();
 }
 
 // FUNGSI UNTUK CARI DEVICE KOSONG (MENU 3) - SEQUENTIAL SEARCH 
@@ -253,6 +250,7 @@ void cariDevice() {
     printf(" Ketik 'PC' untuk semua PC\n");
     printf(" Ketik 'PS' untuk semua PlayStation\n");
     printf(" Ketik 'NINTENDO' untuk semua Nintendo\n");
+    printf(" Ketik nama device lengkap untuk pencarian spesifik\n");
     printf("========================================\n");
     printf("Masukkan kata kunci: ");
     
@@ -261,11 +259,36 @@ void cariDevice() {
     
     printf("\n=== HASIL PENCARIAN ===\n");
     printf("========================================\n");
-
+    printf("No.  Device              Status          \n");
+    printf("----------------------------------------\n");
+    
+    int ditemukan = 0;
+    for (int i = 0; i < 13; i++) {
+        // Cek apakah device mengandung kata kunci
+        if (strstr(devices[i].nama, kataKunci) != NULL || 
+            (strcmp(kataKunci, "PC") == 0 && strstr(devices[i].nama, "PC")) ||
+            (strcmp(kataKunci, "PS") == 0 && strstr(devices[i].nama, "PS")) ||
+            (strcmp(kataKunci, "NINTENDO") == 0 && strstr(devices[i].nama, "Nintendo"))) {
+            
+            printf("%-3d  %-18s  ", i + 1, devices[i].nama);
+            if (devices[i].tersedia == 1) {
+                printf("TERSEDIA\n");
+            } else {
+                printf("DIPAKAI oleh %s\n", devices[i].userBooking);
+            }
+            ditemukan = 1;
+        }
+    }
+    
+    if (!ditemukan) {
+        printf("Tidak ada device yang sesuai dengan kata kunci '%s'\n", kataKunci);
+    }
+    
+    printf("========================================\n");
+    pauseProgram();
 }
-    
-    
 
+// FUNGSI UNTUK MENAMPILKAN LIST DAN MELAKUKAN RENTAL
 void list(int menu) {
     int jam;
     char lanjut;
@@ -310,7 +333,7 @@ void list(int menu) {
                         hargapc = 8000;
                         break;
                     case 5:
-                        strcpy (namaPC ,"PC E");
+                        strcpy(namaPC ,"PC E");
                         hargapc = 9000;
                         break;
                     default: 
@@ -414,13 +437,9 @@ void list(int menu) {
                         // Update status device
                         updateDeviceStatus(namaPC, 0, pengguna[jumlahlogin].username);
                         
-                        char aktivitas[100];
-                        sprintf(aktivitas, "Rental %s - %d jam (Rp %d)", namaPC, jam, totalHarga);
-                        tambahRiwayat(aktivitas);
-                        
                         printf("\n======================================\n");
                         printf("           RENTAL BERHASIL!\n");
-                        printf("\n======================================\n");
+                        printf("======================================\n");
                         printf(" %s telah dirental\n", namaPC);
                         printf(" Durasi: %d jam\n", jam);
                         printf(" Total bayar: Rp %d\n", totalHarga);
@@ -438,7 +457,7 @@ void list(int menu) {
             }
         } break;
         
-        case 2: { 
+        case 2: { // PLAYSTATION
             int ps;
             int hargaPS;
             
@@ -446,10 +465,10 @@ void list(int menu) {
                 printf("\n=== RENTAL PLAYSTATION ===\n");
                 printf("================================\n");
                 printf("Pilih PlayStation:\n");
-                printf("1. PS A PS4 (Rp 7.000/jam)\n");
-                printf("2. PS B PS4 PRO (Rp 8.000/jam)\n");
-                printf("3. PS C PS5 (Rp 9.000/jam)\n");
-                printf("4. PS D PS5 PRO (Rp 10.000/jam)\n");
+                printf("1. PS4 (Rp 7.000/jam)\n");
+                printf("2. PS4 PRO (Rp 8.000/jam)\n");
+                printf("3. PS5 (Rp 9.000/jam)\n");
+                printf("4. PS5 PRO (Rp 10.000/jam)\n");
                 printf("0. Kembali\n");
                 printf("================================\n");
                 printf("Pilihan: ");
@@ -464,7 +483,7 @@ void list(int menu) {
                         hargaPS = 7000;
                         break;
                     case 2: 
-                        strcpy(namaPS, "PS4 PRO"); 
+                        strcpy(namaPS, "PS4 Pro"); 
                         hargaPS = 8000;
                         break;
                     case 3: 
@@ -472,7 +491,7 @@ void list(int menu) {
                         hargaPS = 9000;
                         break;
                     case 4: 
-                        strcpy(namaPS, "PS5 PRO"); 
+                        strcpy(namaPS, "PS5 Pro"); 
                         hargaPS = 10000;
                         break;
                     default: 
@@ -532,17 +551,13 @@ void list(int menu) {
                         // Update status device
                         updateDeviceStatus(namaPS, 0, pengguna[jumlahlogin].username);
                         
-                        char aktivitas[100];
-                        sprintf(aktivitas, "Rental %s - %d jam (Rp %d)", namaPS, jam, totalHarga);
-                        tambahRiwayat(aktivitas);
-                        
                         printf("\n======================================\n");
                         printf("           RENTAL BERHASIL!\n");
-                        printf("=======================================\n");
+                        printf("======================================\n");
                         printf(" %s telah dirental\n", namaPS);
                         printf(" Durasi: %d jam\n", jam);
                         printf(" Total bayar: Rp %d\n", totalHarga);
-                        printf("Saldo tersisa: Rp %d\n", pengguna[jumlahlogin].saldo);
+                        printf(" Saldo tersisa: Rp %d\n", pengguna[jumlahlogin].saldo);
                         printf("======================================\n");
                         pauseProgram();
                         return;
@@ -554,7 +569,7 @@ void list(int menu) {
             }
         } break;
         
-        case 3: { 
+        case 3: { // NINTENDO SWITCH
             int nintendo;
             int hargaNintendo = 6000;
             
@@ -640,18 +655,14 @@ void list(int menu) {
                     // Update status device
                     updateDeviceStatus(namaNintendo, 0, pengguna[jumlahlogin].username);
                     
-                    char aktivitas[100];
-                    sprintf(aktivitas, "Rental %s - %d jam (Rp %d)", namaNintendo, jam, totalHarga);
-                    tambahRiwayat(aktivitas);
-                    
-                    printf("\n=======================================\n");
+                    printf("\n======================================\n");
                     printf("           RENTAL BERHASIL!\n");
-                    printf("=========================================\n");
+                    printf("======================================\n");
                     printf(" %s telah dirental\n", namaNintendo);
                     printf(" Durasi: %d jam\n", jam);
                     printf(" Total bayar: Rp %d\n", totalHarga);
                     printf(" Saldo tersisa: Rp %d\n", pengguna[jumlahlogin].saldo);
-                    printf("========================================\n");
+                    printf("======================================\n");
                     pauseProgram();
                     return;
                 } else {
@@ -662,8 +673,6 @@ void list(int menu) {
         } break;
     }
 }
-
-
 
 // FUNGSI HAPUS AKUN (MENU 6)
 void hapusAkun() {
@@ -694,6 +703,7 @@ void hapusAkun() {
             }
         }
         
+        // Geser data untuk menghapus user
         for (int i = jumlahlogin; i < jumlahuser - 1; i++) {
             pengguna[i] = pengguna[i + 1];
         }
@@ -731,10 +741,6 @@ void topUpSaldo() {
     
     pengguna[jumlahlogin].saldo += nominal;
     
-    char aktivitas[100];
-    sprintf(aktivitas, "Top-up saldo Rp %d", nominal);
-    tambahRiwayat(aktivitas);
-    
     printf("Top-up berhasil!\n");
     printf("Saldo sekarang: Rp %d\n", pengguna[jumlahlogin].saldo);
     pauseProgram();
@@ -763,7 +769,7 @@ void editUser() {
             printf("Masukkan username baru: ");
             scanf("%s", usernameBaru);
             
-       
+            // Cek apakah username sudah ada
             int usernameSudahAda = 0;
             for (int i = 0; i < jumlahuser; i++) {
                 if (i != jumlahlogin && strcmp(pengguna[i].username, usernameBaru) == 0) {
@@ -775,7 +781,7 @@ void editUser() {
             if (usernameSudahAda) {
                 printf("Username sudah digunakan! Pilih username lain\n");
             } else {
-              
+                // Update username di device booking
                 for (int i = 0; i < 13; i++) {
                     if (strcmp(devices[i].userBooking, pengguna[jumlahlogin].username) == 0) {
                         strcpy(devices[i].userBooking, usernameBaru);
@@ -784,10 +790,6 @@ void editUser() {
                 
                 strcpy(pengguna[jumlahlogin].username, usernameBaru);
                 printf("Username berhasil diganti!\n");
-                
-                char aktivitas[100];
-                sprintf(aktivitas, "Ganti username menjadi %s", usernameBaru);
-                tambahRiwayat(aktivitas);
             }
             pauseProgram();
             
@@ -807,12 +809,8 @@ void editUser() {
             
             strcpy(pengguna[jumlahlogin].password, passwordBaru);
             
-            char aktivitas[100];
-            sprintf(aktivitas, "Ganti password");
-            tambahRiwayat(aktivitas);
-            
             printf("Password berhasil diubah!\n");
-            pauseProgram(); 
+            pauseProgram();
             
         } else if (pilihan == 3) {
             return;
@@ -831,7 +829,7 @@ void sortingLamaBermain() {
         return;
     }
     
-    struct User temp[100]; 
+    struct User temp[100];
     for (int i = 0; i < jumlahuser; i++) {
         temp[i] = pengguna[i];
     }
@@ -855,12 +853,11 @@ void sortingLamaBermain() {
     for (int i = 0; i < jumlahuser; i++) {
         printf("%-4d  %-16s  ", i + 1, temp[i].username);
         bilangWaktu(temp[i].totalmenitbermain);
-        printf ("\n");
-        
+        printf("\n");
     }
-    printf("\n=========================================\n");
+    printf("=========================================\n");
     
-    printf("\n PENGGUNA DENGAN WAKTU BERMAIN TERBANYAK:\n");
+    printf("\nPENGGUNA DENGAN WAKTU BERMAIN TERBANYAK:\n");
     printf("Nama: %s\n", temp[0].username);
     printf("Total: ");
     bilangWaktu(temp[0].totalmenitbermain);
@@ -870,7 +867,7 @@ void sortingLamaBermain() {
     for (int i = 0; i < jumlahuser; i++) {
         totalSemua += pengguna[i].totalmenitbermain;
     }
-    printf("\n TOTAL SEMUA PENGGUNA: ");
+    printf("\nTOTAL SEMUA PENGGUNA: ");
     bilangWaktu(totalSemua);
     printf("\n");
     pauseProgram();
@@ -879,31 +876,27 @@ void sortingLamaBermain() {
 //EXIT PROGRAM USER KELUAR
 void exitProgram() {
     printf("\nTerima kasih telah menggunakan program warnet!\n");
-    pauseProgram()
-    ;
+    pauseProgram();
     exit(0);
 }
 
-int main () {
-    initDevices;
+// FUNGSI UTAMA
+int main() {
     int pilihan;
+    initDevices(); 
+    
+    mainMenu(); // menu pertama tersedia 1. sign up 2.log in 3.
+Warnetmenu(); //WARNET MENU TAMPILAN LIST LAYANAN WARNET YANG TERSEDIA
+Signup(); // SIGN UP REGISTER DAFTAR AKUN BARU
+Signin(); // SIGN IN MASUK LOGIN
+exitProgram(); // EXIT PROGRAM 
+void list(int menu); //LIST RENTAL (MENU 1)
+tambahJamMain(); // TAMBAH JAM MAIN (MENU 2) TUBES-TAMBAH !
+cariDevice(); // CEK DEVICE KOSONG SEARCHING (MENU 3) TUBES - SEARCHING !
+editUser(); // EDIT USER (MENU 5) TUBES-EDIT !
+hapusAkun(); // HAPUS AKUN (MENU 6) TUBES - DELETE !
+topUpSaldo(); // TOP UP SALDO (MENU 7)
+sortingLamaBermain(); // URUTKAN (MENU 8) TUBES- SORTING !
 
-    while (1 ) {
-        if (jumlahlogin == -1) {
-            mainMenu();
-            scanf("%d" , pilihan);
-
-            switch (pilihan) {
-            case 1: 
-
-
-
-
-
-
-
-
-        }
-    }
+    return 0;
 }
-
