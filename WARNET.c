@@ -169,7 +169,7 @@ void tampilkanDeviceYangDisewa() {
     
     int adaSewa = 0; // MEMBERITAHU JIKA ADA YG SEWA ITU SAMA DENGAN 0
     for (int i = 0; i < 13; i++) {
-        if (strcmp(devices[i].userBooking, pengguna[jumlahlogin].username) == 0) {
+        if (strcmp(devices[i].userBooking, pengguna[jumlahlogin].username) == 0) { 
             printf(" %s\n", devices[i].nama);
             adaSewa = 1;
         }
@@ -1007,11 +1007,11 @@ void exitProgram() {
 }
 
 int main() {
-    initDevices(); // Inisialisasi device
-    int pilihan;
+    initDevices(); //PANGGIL NAMA NAMA DEVICES
+    int pilihan; 
     
     while (1) {
-        if (jumlahlogin == -1) {
+        if (jumlahlogin == -1) { //JIKA JUMLAH LOGIN 
             mainMenu();
             scanf("%d", &pilihan);
             
